@@ -1,0 +1,36 @@
+.tile,
+.tile-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  font-size: 36px;
+  border-radius: 10px;
+}
+
+.tile {
+  background: darkslategrey;
+
+  &-label {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    color: #f7f7f7;
+    background: cadetblue;
+
+    &:hover {
+      transform: scale(1.05) perspective(1px);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
+  &-success {
+    background: tomato;
+  }
+
+  &-empty {
+    .tile-label {
+      display: none;
+    }
+  }
+}

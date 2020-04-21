@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Board from "./components/board";
+import Header from "./components/header";
+import initTileOrder from "./orderTiles";
+import "./app.scss";
 
 function App() {
+  const [tiles, setTiles] = useState([]);
+
+  useEffect(() => {
+    setTiles(initTileOrder());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header title="15 Puzzle" />
+      <section className="board-container">
+        <Board tiles={tiles} />
+      </section>
+      <button onClick={() => setTiles(initTileOrder())}>Shuffle board</button>
     </div>
   );
 }
