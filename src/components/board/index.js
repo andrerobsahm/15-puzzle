@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Tile from "../tile";
+
 import "./styles.scss";
 
 function Board({ tiles }) {
-  // eslint-disable-next-line
   const [newTiles, setNewTiles] = useState([]);
+  const [winner, setWinner] = useState(false);
 
   const swapTiles = (newTiles, index_a, index_b) => {
     let a = index_a.dataset.index;
@@ -49,24 +50,33 @@ function Board({ tiles }) {
     } else {
       return;
     }
-    // onCompletion(tiles);
+    checkIfComplete();
   }
 
-  // function onCompletion(list) {
-  //   for (let i = 0; i < list.length; i++) {
-  //     if (list[i] === list.id) {
-  //       console.log(list.id);
-  //       console.log("decending");
-  //       return true;
-  //     } else {
-  //       console.log("not decending");
-  //       return false;
-  //     }
-  //   }
-  // }
+  function checkIfComplete() {
+    const allPassed = tiles
+      .map((tile, index) => tile.id === index)
+      .every((x) => x);
+
+    if (allPassed) {
+      setWinner(true);
+    } else {
+      setWinner(false);
+    }
+  }
+
+  function Congratz(props) {
+    return (
+      <div className="congratz">
+        <h3>Well done</h3>
+        <h2>You've done it!</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="board">
+      {winner === true && <Congratz />}
       {tiles.map((tile, index) => (
         <Tile
           key={tile.id === tile.empty ? `tile-empty` : `tile-${tile.id}`}
