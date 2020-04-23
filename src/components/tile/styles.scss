@@ -1,5 +1,4 @@
-.tile,
-.tile-label {
+.tile {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,27 +9,28 @@
 }
 
 .tile {
-  background: darkslategrey;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: #f9e7e7;
+  background: #7a9e9f;
+  box-shadow: 2px 2px 4px #4f6367;
 
-  &-label {
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    color: #f7f7f7;
-    background: cadetblue;
-
-    &:hover {
-      transform: scale(1.05) perspective(1px);
-      transition: transform 0.2s ease-in-out;
-    }
+  &:not(&-empty):not(&-success):hover {
+    transition: background 0.2s ease;
+    background: lighten(#7a9e9f, 5%);
   }
 
   &-success {
-    background: tomato;
+    background: #f7567c;
+    &:hover {
+      transition: background 0.2s ease;
+      background: lighten(#f7567c, 5%);
+    }
   }
 
   &-empty {
-    .tile-label {
-      display: none;
-    }
+    cursor: default;
+    background: #4f6367 !important;
+    color: transparent;
   }
 }

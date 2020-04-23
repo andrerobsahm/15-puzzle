@@ -17,14 +17,13 @@ export default function initTileOrder() {
   var SUM = [...Array(SET_INITIAL_BOARD).keys()];
 
   let id = 0;
-  const tiles = SUM.reduce((acc) => {
-    acc.push({
+  const tiles = SUM.reduce((listOfTiles) => {
+    listOfTiles.push({
       id: id++,
       empty: EMPTY_INDEX,
     });
-    return acc;
+    return listOfTiles;
   }, []);
 
   return shuffle(tiles);
-  // return tiles;
 }

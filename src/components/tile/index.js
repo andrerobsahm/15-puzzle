@@ -3,14 +3,18 @@ import "./styles.scss";
 
 class Tile extends Component {
   render() {
-    const { id, empty, rightPos } = this.props;
+    const { id, index, empty, rightPos, handleclick } = this.props;
 
     return (
-      <article className="tile" className={`tile ${empty ? "tile-empty" : ""}`}>
-        <span className={`tile-label ${rightPos ? "tile-success" : ""}`}>
-          {id + 1}
-        </span>
-      </article>
+      <div
+        data-index={index}
+        onClick={handleclick}
+        className={`tile ${empty ? "tile-empty" : ""} ${
+          rightPos ? "tile-success" : ""
+        }`}
+      >
+        {id + 1}
+      </div>
     );
   }
 }
