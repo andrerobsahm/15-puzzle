@@ -10,8 +10,11 @@ function shuffle(array) {
   return _array;
 }
 
+export const COLS = 4;
+export const ROWS = 4;
+
 export default function initTileOrder() {
-  const SET_INITIAL_BOARD = 4 * 4;
+  const SET_INITIAL_BOARD = COLS * ROWS;
   const EMPTY_INDEX = SET_INITIAL_BOARD - 1;
 
   var SUM = [...Array(SET_INITIAL_BOARD).keys()];

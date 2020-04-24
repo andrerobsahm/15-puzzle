@@ -3,7 +3,7 @@ import Tile from "../tile";
 
 import "./styles.scss";
 
-function Board({ tiles }) {
+function Board({ tiles, rows, cols }) {
   const [newTiles, setNewTiles] = useState([]);
   const [winner, setWinner] = useState(false);
 
@@ -74,8 +74,10 @@ function Board({ tiles }) {
     );
   }
 
+  console.log(cols);
+
   return (
-    <div className="board">
+    <div className="board" cols={cols} rows={rows}>
       {winner === true && <Congratz />}
       {tiles.map((tile, index) => (
         <Tile
@@ -87,6 +89,13 @@ function Board({ tiles }) {
           handleclick={(e) => movableTiles(e, tile)}
         />
       ))}
+      <style>{`
+      .board {
+        grid-template-columns: repeat(${cols}, 1fr);
+        grid-template-rows: repeat(${rows}, auto);
+      }
+      }
+    `}</style>
     </div>
   );
 }

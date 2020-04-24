@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./components/board";
 import Header from "./components/header";
 import initTileOrder from "./orderTiles";
+import { COLS, ROWS } from "./orderTiles";
 import "./app.scss";
 
 function App() {
@@ -15,7 +16,12 @@ function App() {
     <div className="app">
       <Header title="15 Puzzle" />
       <section className="board-container">
-        <Board tiles={tiles} />
+        <Board
+          cols={COLS}
+          rows={ROWS}
+          tiles={tiles}
+          shuffle={() => setTiles(initTileOrder())}
+        />
       </section>
       <button onClick={() => setTiles(initTileOrder())}>Shuffle board</button>
     </div>
